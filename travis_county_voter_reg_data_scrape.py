@@ -53,7 +53,8 @@ with open('travis_county_voter_{0}_{1}.csv'.format(extraction_date, extraction_t
 s3_client = boto3.session.Session(profile_name='s3').client('s3', 'us-east-2')
 s3_client.upload_file('travis_county_voter_{0}_{1}.csv'.format(extraction_date, extraction_time),
                       'travis-county-voter-reg-collected',
-                      'csvs/travis_county_voter_{0}_{1}.csv'.format(extraction_date, extraction_time))
+                      'csvs/travis_county_voter_{0}_{1}.csv'.format(extraction_date, extraction_time),
+                      ExtraArgs={'ACL': 'public-read'})
 
 
 all_records = travis_reg.scan()
